@@ -68,24 +68,35 @@
     <div class="main-wrapper">
 	    
 	    <section class="blog-list px-3 py-5 p-md-5">
-		    <div class="container">
 
 				<!--//item-->
-				{% for obj in queryset %}
-			    <div class="item mb-5">
-				    <div class="media">
-					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ obj.thumbnail.url }}" alt="image">
-					    <div class="media-body">
-						    <h3 class="title mb-1"><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
-						    <div class="meta mb-1"><span class="date">{{ obj.timestamp|timesince }} ago</span><span class="time">{{ obj.view_count }} min read</span><span class="comment"><a href="#">{{ obj.comment_count }} comments</a></span></div>
-						    <div class="intro">{{ obj.overview|linebreaks|truncatechars:200 }}</div>
-						    <a class="more-link" href="{{ obj.get_absolute_url }}">Read more &rarr;</a>
-					    </div>
-				    </div>
-			    </div>
-				{% endfor %}
-				<!--//item-->
+				
 
+					<div class="mag-box small-wide-post-box wide-post-box top-news-box">
+					<div class="container-wrapper">
+					<div class="mag-box-container clearfix">
+						<ul id="posts-container" class="posts-items">
+
+							{% for obj in queryset %}
+							<li class="post-item  post type-post status-publish format-standard has-post-thumbnail category-django tag-django-intermediate tie-standard">
+							<a aria-label="{{ obj.title }}" href="{{ obj.get_absolute_url }}" class="post-thumb">
+							<img width="390" height="220" src="{{ obj.thumbnail.url }}" class="attachment-jannah-image-large size-jannah-image-large wp-post-image" alt="Photo of Django + AJAX : How to use AJAX in Django Templates" loading="lazy"/>
+								</a>
+								<div class="post-details">
+								<div class="post-meta clearfix"></div>
+								<h2 class="post-title">
+									<a href="{{ obj.get_absolute_url }}" >{{ obj.title }}</a>
+								</h2>
+								<p class="post-excerpt">{{ obj.overview|linebreaks|truncatechars:200 }}</p>
+								<a class="more-link button" href="{{ obj.get_absolute_url }}" >Read More &raquo;</a >
+							</div>
+							</li>
+							{% endfor %}
+
+						</ul>
+					</div>
+				</div>
+				</div>
 			    
 			    <nav class="blog-nav nav nav-justified my-5">
 
